@@ -18,8 +18,6 @@ export const AuthProvider = ({ children }) => {
 			setUser(newUser);
 			setLoading(false);
 			if (user) {
-				console.log(user);
-				// console.log("avail");
 				history.push("/chats");
 			}
 		});

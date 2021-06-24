@@ -8,7 +8,6 @@ import axios from "axios";
 const Chats = () => {
 	const [loading, setLoading] = useState(true);
 	const { user } = useAuth();
-	console.log(user);
 	const history = useHistory();
 	const handleLogout = async () => {
 		await auth.signOut();
@@ -24,7 +23,6 @@ const Chats = () => {
 			history.push("/");
 			return;
 		}
-		console.log(user);
 		axios
 			.get("https://api.chatengine.io/users/me/", {
 				headers: {
@@ -34,18 +32,14 @@ const Chats = () => {
 				},
 			})
 			.then((response) => {
-				console.log(response);
 				setLoading(false);
 			})
 			.catch((err) => {
-				// console.log(user);
 				let formData = new FormData();
-				// formData.append("email", user.email);
 				formData.append("username", user.email);
 				formData.append("secret", user.uid);
 
 				getFile(user.photoURL).then((avatar) => {
-					// formData.append("avatar", avatar, avatar.name);
 					axios
 						.post("https://api.chatengine.io/users/", formData, {
 							headers: {
@@ -54,10 +48,9 @@ const Chats = () => {
 							},
 						})
 						.then((res) => {
-							console.log(res);
 							setLoading(false);
 						})
-						.catch((err) => console.log(err));
+						.catch((err) => {});
 				});
 			});
 	}, [user, history]);

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { FacebookOutlined, GoogleOutlined } from "@ant-design/icons";
 import "firebase/app";
 import firebase from "firebase/app";
